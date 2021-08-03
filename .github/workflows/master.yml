@@ -57,4 +57,4 @@ jobs:
       - name: Build Docker
         run: make docker-build
       - name: Publish docker
-        run: make docker-publish
+        run: make docker-push
