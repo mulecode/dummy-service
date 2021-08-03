@@ -15,10 +15,10 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-      env:
-        GITHUB_ACTOR: ${{secrets.ACTOR}}
-        GITHUB_TOKEN: ${{secrets.TOKEN}}
       - name: echo env var
+        env:
+          GITHUB_ACTOR: ${{secrets.ACTOR}}
+          GITHUB_TOKEN: ${{secrets.TOKEN}}
         run: echo "${GITHUB_ACTOR}"
       - name: Compile
         run: make compile
