@@ -1,0 +1,16 @@
+GET {{url}}/api/echo
+Cache-Control: no-cache
+Accept: application/json
+X-CUSTOM: hello
+
+###
+
+POST {{url}}/api/echo
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+X-CUSTOM: hello
+
+{
+  "property": "hello json"
+}
