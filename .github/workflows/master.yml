@@ -53,7 +53,7 @@ jobs:
         env:
           # Github will generate the token for the actor
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          run: make docker-login
+        run: make docker-login
       - name: Build Docker
         run: make docker-build
       - name: Publish docker
