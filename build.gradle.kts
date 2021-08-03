@@ -2,6 +2,7 @@ plugins {
     java
     idea
     jacoco
+    id("maven-publish")
     id("io.freefair.lombok") version "5.2.1"
     id("org.springframework.boot") version "2.5.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -39,4 +40,21 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/mulecode/dummy-service")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifact(tasks.bootJar.get())
+        }
+    }
 }
