@@ -35,6 +35,26 @@ jobs:
           path: build
       - name: publish artefact
         env:
+          # Github will generate the token for the actor
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: make publish
 
+  publish-docker:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      # Download the build folder
+      - uses: actions/download-artifact@master
+        with:
+          name: build
+          path: build
+      - name: Github Docker login
+        env:
+          # Github will generate the token for the actor
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          run: make docker-login
+      - name: Build Docker
+        run: make docker-build
+      - name: Publish docker
+        run: make docker-publish

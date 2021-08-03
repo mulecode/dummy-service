@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   dummy-service:
-    image: dummy-service:latest
+    image: ghcr.io/mulecode/dummy-service:latest
     restart: always
     ports:
       - 8080:8080

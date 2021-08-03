@@ -1,5 +1,7 @@
 FROM openjdk:11-jdk-slim
 
+LABEL org.opencontainers.image.source="https://github.com/mulecode/dummy-service"
+
 ARG JAR_FILE
 
 WORKDIR /
