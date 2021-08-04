@@ -37,7 +37,8 @@ jobs:
         env:
           # Github will generate the token for the actor
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: make publish
+        run: echo "Pushing artefact"
+#        run: make publish
 
   publish-docker:
     needs: build
@@ -55,6 +56,8 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: make docker-login
       - name: Build Docker
-        run: make docker-build
+        run: echo "Building docker"
+#        run: make docker-build
       - name: Publish docker
-        run: make docker-push
+        run: echo "Pushing docker"
+#        run: make docker-push
