@@ -61,3 +61,10 @@ jobs:
       - name: Publish docker
         run: echo "Pushing docker"
 #        run: make docker-push
+
+  deploy-dev:
+    needs: publish-docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish docker
+        run: echo "deploying to dev"
