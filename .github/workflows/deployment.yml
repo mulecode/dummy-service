@@ -4,15 +4,29 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'version'
+        description: 'tag version'
         required: true
       environment:
-        description: 'environment'
+        description: 'environment [dev, qa, prod]'
         required: true
 
 jobs:
-  deploy:
+  deploy-dev:
+    if: github.event.inputs.environment == 'dev'
     runs-on: ubuntu-latest
+    env:
+      ENV: ${{ github.event.inputs.environment }}
+      TF_VAR_repository_version: ${{ github.event.inputs.version }}
     steps:
-      - run: echo "will deploy to ${{ github.event.inputs.environment }}!"
+      - run: echo "will deploy to DEV!"
 
+  deploy-prod:
+    if: github.event.inputs.environment == 'prod'
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    env:
+      ENV: ${{ github.event.inputs.environment }}
+      TF_VAR_repository_version: ${{ github.event.inputs.version }}
+    steps:
+      - run: echo "will deploy to PROD!"
