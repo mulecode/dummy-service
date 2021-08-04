@@ -1,4 +1,4 @@
-name: feature build
+name: Build and Test
 
 on:
   pull_request:
@@ -17,5 +17,13 @@ jobs:
           java-version: '11'
       - name: Compile
         run: make compile
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
       - name: Test
         run: make test

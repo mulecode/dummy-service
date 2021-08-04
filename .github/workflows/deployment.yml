@@ -1,8 +1,11 @@
-name: deployment
+name: Deployment
 
 on:
   workflow_dispatch:
     inputs:
+      version:
+        description: 'version'
+        required: true
       environment:
         description: 'environment'
         required: true
