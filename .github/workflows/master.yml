@@ -64,17 +64,18 @@ jobs:
     needs: [ publish-artifact, publish-docker ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: Read file Version
         id: version_file
         uses: andstor/file-reader-action@v1
         with:
-          path: "./../../version.txt"
+          path: "version.txt"
 
       - name: Read file Change Log file
         id: changelog_file
         uses: andstor/file-reader-action@v1
         with:
-          path: "./../../changelog.md"
+          path: "changelog.md"
 
       - name: Create a GitHub release
         uses: actions/create-release@v1
