@@ -35,7 +35,7 @@ jobs:
         env:
           # Github will generate the token for the actor
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-#        run: echo "Pushing artefact"
+        #        run: echo "Pushing artefact"
         run: make publish
 
   publish-docker:
@@ -54,10 +54,10 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: make docker-login
       - name: Build Docker
-#        run: echo "Building docker"
+        #run: echo "Building docker"
         run: make docker-build
       - name: Publish docker
-#        run: echo "Pushing docker"
+        #run: echo "Pushing docker"
         run: make docker-push
 
   release:
@@ -68,13 +68,13 @@ jobs:
         id: version_file
         uses: andstor/file-reader-action@v1
         with:
-          path: "version.txt"
+          path: "./../../version.txt"
 
       - name: Read file Change Log file
         id: changelog_file
         uses: andstor/file-reader-action@v1
         with:
-          path: "changelog.md"
+          path: "./../../changelog.md"
 
       - name: Create a GitHub release
         uses: actions/create-release@v1
@@ -86,7 +86,7 @@ jobs:
           body: ${{ steps.changelog_file.outputs.contents }}
 
   deploy-dev:
-    needs: publish-docker
+    needs: [ release ]
     runs-on: ubuntu-latest
     steps:
       - name: Publish docker
