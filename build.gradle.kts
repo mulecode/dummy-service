@@ -14,7 +14,9 @@ java {
 }
 
 group = "uk.co.mulecode"
-version = "1.0.0"
+//version = "1.0.0"
+version = file("./version.txt").readText().trim()
+
 
 
 dependencyManagement {

@@ -38,3 +38,9 @@ docker-build:
 docker-push:
 	docker push $(DOCKER_REPO):latest &&\
 	docker push $(DOCKER_REPO):$(VERSION)
+
+CURRENT_VERSION := `sed 1q version.txt`
+
+.ONESHELL:
+read-version:
+	echo "$(CURRENT_VERSION)"
